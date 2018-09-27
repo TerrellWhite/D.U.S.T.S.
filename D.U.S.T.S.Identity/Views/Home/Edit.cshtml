@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<form action="/Home/SaveChanges/">
+    <input type="hidden" name="artistid" value="@ViewBag.Artistedit.artistid" />
+    <input type="text" name="artistname" value="@ViewBag.Artistedit.artistname" />
+    <input type="text" name="genre" value="@ViewBag.Artistedit.genre" />
+    <input type="url" name="soundcloud" value="@ViewBag.Artistedit.soundcloud" />
+    <input type="url" name="facebook" value="@ViewBag.Artistedit.facebook" />
+    <input type="url" name="website" value="@ViewBag.Artistedit.website" />
+    <input type="url" name="instagram" value="@ViewBag.Artistedit.instagram" />
+    <input type="url" name="spotify" value="@ViewBag.Artistedit.spotify" />
+    <input type="url" name="youtube" value="@ViewBag.Artistedit.youtube" />
+    <input type="email" name="email" value="@ViewBag.Artistedit.email" />
+    <input type="url" name="twitter" value="@ViewBag.Artistedit.twitter" />
+    <input type="submit" value="Submit" />
+    @*@Html.AntiForgeryToken();*@
+</form>

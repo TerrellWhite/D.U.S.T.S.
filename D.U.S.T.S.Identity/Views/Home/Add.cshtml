@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+<form action="/Home/AddArtist/">
+    <input type="text" name="artistname" placeholder="Artist Name" />
+    <input type="text" name="genre" placeholder=" Genre" />
+    <input type="url" name="soundcloud" placeholder="SoundCloud" />
+    <input type="url" name="facebook" placeholder="Facebook" />
+    <input type="url" name="website" placeholder="Website" />
+    <input type="url" name="instagram" placeholder="Instagram" />
+    <input type="url" name="spotify" placeholder="Spotify" />
+    <input type="url" name="youtube" placeholder="Youtube" />
+    <input type="email" name="email" placeholder="Email" />
+    <input type="url" name="twitter" placeholder="Twitter" />
+    <input type="submit" value="Submit" />
+    @*@Html.AntiForgeryToken();*@
+</form>
+

@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Artist";
+}
+
+<h2>Artist</h2>
+<form action="/Home/SearchArtistByName" method="get" class="form-inline">
+    <label>Artist/Genre</label><input type="text" name="name" class="form-control" /><input type="submit" value="Search" />
+</form>
+@foreach (var artistinfo in ViewBag.Artistinfo)
+{
+    <div class="col-lg-12" style="border: solid 1px; padding-bottom:5%;">
+        <h1><a href="Page?artistid=@artistinfo.artistid">@artistinfo.artistname</a></h1>
+        <p>@artistinfo.genre</p>
+
+    </div>
+    <br />
+}

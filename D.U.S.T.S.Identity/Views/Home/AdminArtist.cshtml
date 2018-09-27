@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "AdminArtist";
+}
+
+<h2>AdminArtist</h2>
+
+<h2>Artist</h2>
+<form action="/Home/SearchAdminArtistByName" method="get" class="form-inline">
+    <label>Artist/Genre</label><input type="text" name="name" class="form-control" /><input type="submit" value="Search" />
+</form>
+<a href="/Home/Add/">Add New artist</a>
+<table class="table" border="1">
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Genre</td>
+        <td>SoundCloud</td>
+        <td>Facebook</td>
+        <td>Instagram</td>
+        <td>Spotify</td>
+        <td>Popular City</td>
+        <td>Website</td>
+        <td>Email</td>
+        <td>Youtube</td>
+        <td>Twitter</td>
+    </tr>
+    @foreach (var artistinfo in ViewBag.Artistinfo)
+    {
+        <tr>
+            <td>@artistinfo.artistid</td>
+            <td>@artistinfo.artistname</td>
+            <td>@artistinfo.genre</td>
+            <td><a href="@artistinfo.soundcloud">@artistinfo.soundcloud</a></td>
+            <td><a href="@artistinfo.facebook">@artistinfo.facebook</a></td>
+            <td><a href="@artistinfo.instagram">@artistinfo.instagram</a></td>
+            <td><a href="@artistinfo.spotify">@artistinfo.spotify</a></td>
+            <td>@artistinfo.popularcity</td>
+            <td><a href="@artistinfo.website">@artistinfo.website</a></td>
+            <td>@artistinfo.email</td>
+            <td><a href="@artistinfo.youtube">@artistinfo.youtube</a></td>
+            <td><a href="@artistinfo.twitter">@artistinfo.twitter</a></td>
+
+            <td><a href="Edit?artistid=@artistinfo.artistid">Edit</a></td>
+        </tr>
+    }
+</table>

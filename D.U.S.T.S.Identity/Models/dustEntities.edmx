@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dustModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="artistinformation">
+          <Key>
+            <PropertyRef Name="artistid" />
+          </Key>
+          <Property Name="artistid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="artistname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="genre" Type="nvarchar" MaxLength="1000" />
+          <Property Name="soundcloud" Type="nvarchar" MaxLength="100" />
+          <Property Name="facebook" Type="nvarchar" MaxLength="100" />
+          <Property Name="instagram" Type="nvarchar" MaxLength="100" />
+          <Property Name="spotify" Type="nvarchar" MaxLength="100" />
+          <Property Name="popularcity" Type="nvarchar" MaxLength="100" />
+          <Property Name="website" Type="nvarchar" MaxLength="100" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" />
+          <Property Name="youtube" Type="nvarchar" MaxLength="100" />
+          <Property Name="twitter" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="facebook">
+          <Key>
+            <PropertyRef Name="link" />
+          </Key>
+          <Property Name="link" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="followers" Type="int" Nullable="false" />
+          <Property Name="artistid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="instagram">
+          <Key>
+            <PropertyRef Name="link" />
+          </Key>
+          <Property Name="link" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="followers" Type="int" Nullable="false" />
+          <Property Name="artistid" Type="int" Nullable="false" />
+          <Property Name="startdate" Type="date" Nullable="false" />
+          <Property Name="post" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="soundcloud">
+          <Key>
+            <PropertyRef Name="link" />
+          </Key>
+          <Property Name="artistid" Type="int" Nullable="false" />
+          <Property Name="followers" Type="int" />
+          <Property Name="tracks" Type="int" Nullable="false" />
+          <Property Name="link" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_facebook_artistinformation">
+          <End Role="artistinformation" Type="Self.artistinformation" Multiplicity="1" />
+          <End Role="facebook" Type="Self.facebook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="artistinformation">
+              <PropertyRef Name="artistid" />
+            </Principal>
+            <Dependent Role="facebook">
+              <PropertyRef Name="artistid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_instagram_artistinformation">
+          <End Role="artistinformation" Type="Self.artistinformation" Multiplicity="1" />
+          <End Role="instagram" Type="Self.instagram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="artistinformation">
+              <PropertyRef Name="artistid" />
+            </Principal>
+            <Dependent Role="instagram">
+              <PropertyRef Name="artistid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_soundcloud_artistinformation">
+          <End Role="artistinformation" Type="Self.artistinformation" Multiplicity="1" />
+          <End Role="soundcloud" Type="Self.soundcloud" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="artistinformation">
+              <PropertyRef Name="artistid" />
+            </Principal>
+            <Dependent Role="soundcloud">
+              <PropertyRef Name="artistid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dustModelStoreContainer">
+          <EntitySet Name="artistinformation" EntityType="Self.artistinformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="facebook" EntityType="Self.facebook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="instagram" EntityType="Self.instagram" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="soundcloud" EntityType="Self.soundcloud" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_facebook_artistinformation" Association="Self.FK_facebook_artistinformation">
+            <End Role="artistinformation" EntitySet="artistinformation" />
+            <End Role="facebook" EntitySet="facebook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_instagram_artistinformation" Association="Self.FK_instagram_artistinformation">
+            <End Role="artistinformation" EntitySet="artistinformation" />
+            <End Role="instagram" EntitySet="instagram" />
+          </AssociationSet>
+          <AssociationSet Name="FK_soundcloud_artistinformation" Association="Self.FK_soundcloud_artistinformation">
+            <End Role="artistinformation" EntitySet="artistinformation" />
+            <End Role="soundcloud" EntitySet="soundcloud" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dustModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="artistinformation">
+          <Key>
+            <PropertyRef Name="artistid" />
+          </Key>
+          <Property Name="artistid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="artistname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="genre" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="soundcloud" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="facebook" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="instagram" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="spotify" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="popularcity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="website" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="youtube" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="twitter" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="facebooks" Relationship="Self.FK_facebook_artistinformation" FromRole="artistinformation" ToRole="facebook" />
+          <NavigationProperty Name="instagrams" Relationship="Self.FK_instagram_artistinformation" FromRole="artistinformation" ToRole="instagram" />
+          <NavigationProperty Name="soundclouds" Relationship="Self.FK_soundcloud_artistinformation" FromRole="artistinformation" ToRole="soundcloud" />
+        </EntityType>
+        <EntityType Name="facebook">
+          <Key>
+            <PropertyRef Name="link" />
+          </Key>
+          <Property Name="link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="followers" Type="Int32" Nullable="false" />
+          <Property Name="artistid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="artistinformation" Relationship="Self.FK_facebook_artistinformation" FromRole="facebook" ToRole="artistinformation" />
+        </EntityType>
+        <EntityType Name="instagram">
+          <Key>
+            <PropertyRef Name="link" />
+          </Key>
+          <Property Name="link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="followers" Type="Int32" Nullable="false" />
+          <Property Name="artistid" Type="Int32" Nullable="false" />
+          <Property Name="startdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="post" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="artistinformation" Relationship="Self.FK_instagram_artistinformation" FromRole="instagram" ToRole="artistinformation" />
+        </EntityType>
+        <EntityType Name="soundcloud">
+          <Key>
+            <PropertyRef Name="link" />
+          </Key>
+          <Property Name="artistid" Type="Int32" Nullable="false" />
+          <Property Name="followers" Type="Int32" />
+          <Property Name="tracks" Type="Int32" Nullable="false" />
+          <Property Name="link" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="artistinformation" Relationship="Self.FK_soundcloud_artistinformation" FromRole="soundcloud" ToRole="artistinformation" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_facebook_artistinformation">
+          <End Role="artistinformation" Type="Self.artistinformation" Multiplicity="1" />
+          <End Role="facebook" Type="Self.facebook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="artistinformation">
+              <PropertyRef Name="artistid" />
+            </Principal>
+            <Dependent Role="facebook">
+              <PropertyRef Name="artistid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_instagram_artistinformation">
+          <End Role="artistinformation" Type="Self.artistinformation" Multiplicity="1" />
+          <End Role="instagram" Type="Self.instagram" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="artistinformation">
+              <PropertyRef Name="artistid" />
+            </Principal>
+            <Dependent Role="instagram">
+              <PropertyRef Name="artistid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_soundcloud_artistinformation">
+          <End Role="artistinformation" Type="Self.artistinformation" Multiplicity="1" />
+          <End Role="soundcloud" Type="Self.soundcloud" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="artistinformation">
+              <PropertyRef Name="artistid" />
+            </Principal>
+            <Dependent Role="soundcloud">
+              <PropertyRef Name="artistid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dustEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="artistinformations" EntityType="Self.artistinformation" />
+          <EntitySet Name="facebooks" EntityType="Self.facebook" />
+          <EntitySet Name="instagrams" EntityType="Self.instagram" />
+          <EntitySet Name="soundclouds" EntityType="Self.soundcloud" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_facebook_artistinformation" Association="Self.FK_facebook_artistinformation">
+            <End Role="artistinformation" EntitySet="artistinformations" />
+            <End Role="facebook" EntitySet="facebooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_instagram_artistinformation" Association="Self.FK_instagram_artistinformation">
+            <End Role="artistinformation" EntitySet="artistinformations" />
+            <End Role="instagram" EntitySet="instagrams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_soundcloud_artistinformation" Association="Self.FK_soundcloud_artistinformation">
+            <End Role="artistinformation" EntitySet="artistinformations" />
+            <End Role="soundcloud" EntitySet="soundclouds" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dustModelStoreContainer" CdmEntityContainer="dustEntities">
+          <EntitySetMapping Name="artistinformations">
+            <EntityTypeMapping TypeName="dustModel.artistinformation">
+              <MappingFragment StoreEntitySet="artistinformation">
+                <ScalarProperty Name="artistid" ColumnName="artistid" />
+                <ScalarProperty Name="artistname" ColumnName="artistname" />
+                <ScalarProperty Name="genre" ColumnName="genre" />
+                <ScalarProperty Name="soundcloud" ColumnName="soundcloud" />
+                <ScalarProperty Name="facebook" ColumnName="facebook" />
+                <ScalarProperty Name="instagram" ColumnName="instagram" />
+                <ScalarProperty Name="spotify" ColumnName="spotify" />
+                <ScalarProperty Name="popularcity" ColumnName="popularcity" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="youtube" ColumnName="youtube" />
+                <ScalarProperty Name="twitter" ColumnName="twitter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="facebooks">
+            <EntityTypeMapping TypeName="dustModel.facebook">
+              <MappingFragment StoreEntitySet="facebook">
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="followers" ColumnName="followers" />
+                <ScalarProperty Name="artistid" ColumnName="artistid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="instagrams">
+            <EntityTypeMapping TypeName="dustModel.instagram">
+              <MappingFragment StoreEntitySet="instagram">
+                <ScalarProperty Name="link" ColumnName="link" />
+                <ScalarProperty Name="followers" ColumnName="followers" />
+                <ScalarProperty Name="artistid" ColumnName="artistid" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="post" ColumnName="post" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="soundclouds">
+            <EntityTypeMapping TypeName="dustModel.soundcloud">
+              <MappingFragment StoreEntitySet="soundcloud">
+                <ScalarProperty Name="artistid" ColumnName="artistid" />
+                <ScalarProperty Name="followers" ColumnName="followers" />
+                <ScalarProperty Name="tracks" ColumnName="tracks" />
+                <ScalarProperty Name="link" ColumnName="link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dustModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

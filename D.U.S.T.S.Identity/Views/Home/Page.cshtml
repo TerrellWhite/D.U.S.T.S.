@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Page";
+}
+<div class="text-center center-block">
+    <h2>@ViewBag.Artist.artistname</h2>
+    <p>@ViewBag.Artist.genre</p>
+    @if (ViewBag.Artist.soundcloud != null)
+    {
+        <p><a href="@ViewBag.Artist.soundcloud">Soundcloud</a></p>
+    }
+    @if (ViewBag.Artist.facebook != null)
+    {<p><a href="@ViewBag.Artist.facebook">Facebook</a></p>}
+    @if (ViewBag.Artist.youtube != null)
+    {
+        <p><a href="@ViewBag.Artist.youtube">Youtube</a></p>
+    }
+    @if (ViewBag.Artist.spotify != null)
+    {
+        <p><a href="@ViewBag.Artist.spotify"></a>Spotify</p>
+    }
+    @if (ViewBag.Artist.website != null)
+    {
+        <p><a href="@ViewBag.Artistwebsite">@ViewBag.Artistwebsite</a></p>
+    }
+    @if (ViewBag.Artist.twitter != null)
+    {
+        <p><a href="@ViewBag.Artist.twitter">Twitter</a></p>
+    }
+    @if (ViewBag.Artist.email != null)
+    {
+        <p><a href="@ViewBag.Artist.email">@ViewBag.Artist.email</a></p>
+    }
+    @if (ViewBag.Artist.popularcity != null)
+    {
+        <p>@ViewBag.Artist.popularcity</p>
+    }
+    </div>
